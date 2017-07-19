@@ -16,5 +16,5 @@ curl -X GET \
   --cert   $(puppet config print hostcert) \
   --key    $(puppet config print hostprivkey) \
   --cacert $(puppet config print localcacert) \
-  https://"${PUPPETDB}":8081/pdb/query/v4/resources \
-  | jq '.[].certname'
+  https://"${PUPPETDB}":8081/pdb/query/v4/resources | python -m json.tool \
+  | grep 'certname'
